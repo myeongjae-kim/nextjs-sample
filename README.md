@@ -1,8 +1,9 @@
-# Full Stack Next.js with TypeScript sample (https://stage.myeongjae.kim)
+# Full Stack Next.js with TypeScript sample (https://myeongjae.kim)
 
 ## 기술 스택
 
 - Server Side Rednering with Next.js
+- Cache rendering
 - Redux
   - Redux Saga
   - typesafe-actions

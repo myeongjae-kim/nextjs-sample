@@ -1,9 +1,9 @@
 import { useTheme } from '@material-ui/core';
+import { createSelector } from '@reduxjs/toolkit';
 import { NextPageContext } from 'next';
 import * as React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Dispatch, Store } from 'redux';
-import { createSelector } from 'reselect';
 import { BlogArticleDetailRequestDto } from 'src/blog/api/dto';
 import BlogArticleDetail from 'src/blog/presentation/components/templates/BlogArticleDetail';
 import { BlogArticleDetailProps } from 'src/blog/presentation/components/templates/BlogArticleDetail/BlogArticleDetail';

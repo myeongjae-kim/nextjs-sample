@@ -1,8 +1,8 @@
+import { createSelector } from '@reduxjs/toolkit';
 import { NextPageContext } from 'next';
 import * as React from 'react';
 import { useSelector } from 'react-redux';
 import { Store } from 'redux';
-import { createSelector } from 'reselect';
 import NextPage from 'src/common/domain/model/NextPage';
 import { HeadTitle } from 'src/common/presentation/components/molecules';
 import { RootState } from 'src/common/presentation/state-module/root';

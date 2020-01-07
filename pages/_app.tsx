@@ -1,6 +1,7 @@
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { ThemeProvider } from '@material-ui/styles';
 import createSagaMiddleware from "@redux-saga/core";
+import { configureStore } from '@reduxjs/toolkit';
 import withReduxSaga from 'next-redux-saga';
 import withRedux from 'next-redux-wrapper';
 import App from 'next/app';
@@ -8,7 +9,7 @@ import Head from 'next/head';
 import { SnackbarProvider } from 'notistack';
 import React from 'react';
 import { Provider as ReduxStoreProvider } from "react-redux";
-import { AnyAction, applyMiddleware, createStore, Middleware, Store } from 'redux';
+import { Middleware, Store } from 'redux';
 import I18NService from 'src/common/domain/service/I18NService';
 import { MainLayout } from 'src/common/presentation/components/templates';
 import theme from 'src/common/presentation/components/theme';
@@ -20,28 +21,32 @@ import { rootReducer, rootSaga, RootState } from 'src/common/presentation/state-
 
 const { appWithTranslation } = I18NService;
 
+const isProduction = process.env.NODE_ENV !== 'production';
+
 const makeStore = (preloadedState = {} as RootState) => {
-  const bindMiddleware = (middlewares: Middleware[]) => {
-    if (process.env.NODE_ENV !== 'production') {
-      const { composeWithDevTools } = require('redux-devtools-extension')
-      const { createLogger } = require('redux-logger');
-      return composeWithDevTools(applyMiddleware(createLogger(), ...middlewares))
+  const setupMiddlewares = (...middlewares: Middleware[]): Middleware[] => {
+    if (isProduction) {
+      return middlewares;
     }
-    return applyMiddleware(...middlewares)
+
+    const { logger } = require('redux-logger');
+    return [logger, ...middlewares]
   }
 
   const sagaMiddleware = createSagaMiddleware();
 
-  const reduxStore: Store<RootState, AnyAction> = createStore(
-    rootReducer,
-    preloadedState,
-    bindMiddleware([sagaMiddleware])
-  );
+  const reduxStore = configureStore({
+    reducer: rootReducer,
+    middleware: setupMiddlewares(sagaMiddleware),
+    devTools: !isProduction,
+    preloadedState
+  });
 
   (reduxStore as any).sagaTask = sagaMiddleware.run(rootSaga);
 
   return reduxStore
 };
+
 
 interface AppProps {
   store: Store<RootState>

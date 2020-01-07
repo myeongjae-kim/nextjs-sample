@@ -1,9 +1,9 @@
 import { useTheme } from '@material-ui/core';
+import { createSelector } from '@reduxjs/toolkit';
 import { NextPageContext } from 'next';
 import * as React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Dispatch, Store } from 'redux';
-import { createSelector } from 'reselect';
 import { DOMAIN } from 'src/common/constants/Constants';
 import NextPage from 'src/common/domain/model/NextPage';
 import { HeadTitle } from 'src/common/presentation/components/molecules';

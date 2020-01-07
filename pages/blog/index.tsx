@@ -1,8 +1,8 @@
+import { createSelector } from '@reduxjs/toolkit';
 import { NextPageContext } from 'next';
 import * as React from 'react';
 import { useSelector } from 'react-redux';
 import { Store } from 'redux';
-import { createSelector } from 'reselect';
 import BlogArticleList from 'src/blog/presentation/components/templates/BlogArticleList';
 import { BlogArticleListProps } from 'src/blog/presentation/components/templates/BlogArticleList/BlogArticleList';
 import * as listModule from "src/blog/presentation/state-modules/list"

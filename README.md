@@ -7,6 +7,7 @@
   - Redux Saga
   - typesafe-actions
   - immer
+- Reselect
 - Material UI
 - inversify
 - inversify-express-utils

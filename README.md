@@ -1,4 +1,4 @@
-# Next.js with TypeScript sample (https://stage.myeongjae.kim)
+# Full Stack Next.js with TypeScript sample (https://stage.myeongjae.kim)
 
 ## 기술 스택
 
@@ -8,8 +8,10 @@
   - typesafe-actions
   - immer
 - Material UI
-- Inversify
+- inversify
+- inversify-express-utils
 - Type ORM
+- CI/CD with Docker and AWS.
 
 ## 환경변수에 대해서
 
